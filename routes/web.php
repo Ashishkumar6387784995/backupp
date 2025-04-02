@@ -186,6 +186,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
     // Route::get('/company/{companyurl}', [Employer::class, "details"]);
 
+    Route::get('login',[HomeController::class, "login"]);
     Route::get('registration',[HomeController::class, "registration"]);
 
     Route::any('user/registration', [HomeController::class, "userRegistration"])->name('user.register');

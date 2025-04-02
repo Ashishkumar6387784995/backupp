@@ -283,6 +283,63 @@ class HomeController extends Controller
    * @method add user
    * @param null
    */
+
+
+  public function login(Request $req)
+  {
+    if ($req->method() == 'POST') {
+      // Validation for email and password
+      $validator = Validator::make($req->all(), [
+        'email' => 'required|email',
+        'password' => 'required',
+      ]);
+
+      // Check if validation fails
+      if ($validator->fails()) {
+        return redirect("login")
+          ->withErrors($validator)
+          ->withInput();  // Optional: Keep input values after redirect
+      }
+
+      // User login attempt
+      $userData = array(
+        'email' => $req->get('email'),
+        'password' => $req->get('password')
+      );
+
+
+      echo 'login successfully';
+      // // Authenticate the user with the 'company' guard
+      // if (Auth::guard('company')->attempt($userData)) {
+      //   $user = Auth::guard('company')->user();
+
+
+      //   // Check user status
+      //   if ($user->is_active == 1 && $user->is_verified == 1) {
+      //     // Redirect to dashboard
+      //     return redirect("company/dashboard");
+      //   } else {
+      //     // Logout if user is deactivated
+      //     Auth::guard('company')->logout();
+      //     Session::flush();
+
+      //     // Flash message and redirect back
+      //     Session::flash('status', "This user account has been deactivated.");
+      //     return redirect("company/login")->withErrors(['error' => 'This user account has been deactivated.']);
+      //   }
+      // } else {
+      //   // If authentication fails, logout and redirect with error message
+      //   Auth::guard('company')->logout();
+      //   Session::flush();
+      //   Session::flash('status', "Invalid Login");
+      //   return redirect("company/login")->withErrors(['error' => 'Invalid Email or Password.']);
+      // }
+    } else {
+      // Return the login view when it's not a POST request
+      return view('admin.pages.auth.login');
+    }
+  }
+
   public function registration(Request $request)
   {
     try {
