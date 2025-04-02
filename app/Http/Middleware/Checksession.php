@@ -20,7 +20,7 @@ class Checksession
         } else {
             auth()->guard('admin')->logout();
             $message = 'Invalid request, Access denied!.';
-            return redirect('admin/login')->withErrors([$message]);
+            return redirect('login')->withErrors([$message]);
         }
     }
 }

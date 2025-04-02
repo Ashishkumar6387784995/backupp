@@ -20,7 +20,7 @@ class UserMiddleware
             return $next($request);
         } else {
             auth()->guard('user')->logout();
-            return redirect("user/login")->withErrors(['error' => 'Invalid request, Access denied!']);
+            return redirect("login")->withErrors(['error' => 'Invalid request, Access denied!']);
         }
     }
 }

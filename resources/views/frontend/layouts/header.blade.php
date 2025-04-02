@@ -35,22 +35,22 @@
                </ul>
                <div class="common-btn d-flex">
                   <div class="nav-item dropdown">
-                     <a class="login-btn navBtn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <a class="login-btn navBtn dropdown-toggle" type="button" href="{{url('login')}}">
                        Login
                      </a>
-                     <ul class="dropdown-menu">
+                     <!-- <ul class="dropdown-menu">
                        <li><a class="dropdown-item" href="{{ url('company/login') }}">Company</a></li>
                        <li><a class="dropdown-item" href="{{ url('user/login') }}">Job Seeker</a></li>
-                     </ul>
+                     </ul> -->
                    </div>
                    <div class="nav-item dropdown">
-                     <a class="sign-up-btn navBtn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                     <a class="sign-up-btn navBtn dropdown-toggle" type="button" href="{{url('registration')}}">
                         Register
                      </a>
-                     <ul class="dropdown-menu">
+                     <!-- <ul class="dropdown-menu">
                        <li><a class="dropdown-item" href="{{ url('company/registration') }}">Company</a></li>
                        <li><a class="dropdown-item" href="{{ url('user/registration') }}">Job Seeker</a></li>
-                     </ul>
+                     </ul> -->
                    </div>
                   
                </div>

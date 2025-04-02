@@ -20,7 +20,7 @@ class CompanyMiddleware
             return $next($request);
         } else {
             auth()->guard('company')->logout();
-            return redirect("company/login")->withErrors(['error' => 'Invalid request, Access denied!']);
+            return redirect("login")->withErrors(['error' => 'Invalid request, Access denied!']);
         }
         
     }

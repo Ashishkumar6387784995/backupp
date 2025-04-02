@@ -75437,6 +75437,7 @@ body {
   flex-direction: row;
   padding: 0 25px;
   height: 65px;
+  padding-bottom: 25px;
 }
 
 .brand .brand-logo {

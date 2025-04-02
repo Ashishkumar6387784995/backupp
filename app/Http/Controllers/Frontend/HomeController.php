@@ -12,14 +12,14 @@ use App\Models\Company;
 use App\Models\Service;
 use App\Models\Post;
 use App\Models\Job;
-use DB;
-use Validator;
-// use Image;
-// use File;
-use Auth;
-use Session;
-use Str;
-// use Redirect;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+// use Intervention\Image\Facades\Image; // Uncomment this if you are using Intervention Image
+// use Illuminate\Support\Facades\File; // Uncomment this if you are using the File facade
+// use Illuminate\Support\Facades\Redirect; // Uncomment this if you are using Redirect
 
 class HomeController extends Controller
 {
@@ -307,36 +307,73 @@ class HomeController extends Controller
         'password' => $req->get('password')
       );
 
+      // Retrieve the user based on email
+      $checkUser = User::where('email', $req->get('email'))->first();
 
-      echo 'login successfully';
-      // // Authenticate the user with the 'company' guard
-      // if (Auth::guard('company')->attempt($userData)) {
-      //   $user = Auth::guard('company')->user();
+      if ($checkUser) {
+        // Set the role and user type
+        $role = $checkUser->role_id;
+        switch ($role) {
+          case 1:
+            $userType = 'admin';
+            break;
+          case 2:
+            $userType = 'company';
+            break;
+          case 3:
+            $userType = 'user';
+            break;
+          default:
+            return redirect('login')->withErrors(['error' => 'Invalid role.']);
+        }
+      } else {
+        return redirect("registration")->withErrors(['error' => 'Register first.']);
+      }
 
+      // Authenticate the user with the respective guard
+      if (Auth::guard($userType)->attempt($userData)) {
+        $user = Auth::guard($userType)->user();
 
-      //   // Check user status
-      //   if ($user->is_active == 1 && $user->is_verified == 1) {
-      //     // Redirect to dashboard
-      //     return redirect("company/dashboard");
-      //   } else {
-      //     // Logout if user is deactivated
-      //     Auth::guard('company')->logout();
-      //     Session::flush();
+        // Check user status: if active and verified
+        if ($user->is_active == 1 && $user->is_verified == 1) {
+          // Redirect to dashboard
+          return redirect($userType . "/dashboard");
+        } else {
+          // If user is deactivated or not verified
+          Auth::guard($userType)->logout();
+          Session::flush();
 
-      //     // Flash message and redirect back
-      //     Session::flash('status', "This user account has been deactivated.");
-      //     return redirect("company/login")->withErrors(['error' => 'This user account has been deactivated.']);
-      //   }
-      // } else {
-      //   // If authentication fails, logout and redirect with error message
-      //   Auth::guard('company')->logout();
-      //   Session::flush();
-      //   Session::flash('status', "Invalid Login");
-      //   return redirect("company/login")->withErrors(['error' => 'Invalid Email or Password.']);
-      // }
+          // Flash message and redirect
+          Session::flash('status', "This user account has been deactivated.");
+          return redirect("login")->withErrors(['error' => 'This user account has been deactivated.']);
+        }
+      } else {
+        // If authentication fails, logout and redirect with error message
+        Auth::guard($userType)->logout();
+        Session::flush();
+        Session::flash('status', "Invalid Login");
+        return redirect("login")->withErrors(['error' => 'Invalid Email or Password.']);
+      }
     } else {
-      // Return the login view when it's not a POST request
-      return view('admin.pages.auth.login');
+
+      // check if allready login then redirect on it's Dashboard 
+      $company = auth()->guard('company')->user();
+      if ($company) {
+        return redirect("company/dashboard");
+      }
+
+      $admin = auth()->guard('admin')->user();
+      if ($admin) {
+        return redirect("admin/dashboard");
+      }
+
+      $user = auth()->guard('user')->user();
+      if ($user) {
+        return redirect("user/dashboard");
+      }
+
+      // Return the login view for GET request
+      return view('auth.login');
     }
   }
 
