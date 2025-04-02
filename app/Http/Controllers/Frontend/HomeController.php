@@ -285,6 +285,99 @@ class HomeController extends Controller
    */
 
 
+  // public function login(Request $req)
+  // {
+  //   if ($req->method() == 'POST') {
+  //     // Validation for email and password
+  //     $validator = Validator::make($req->all(), [
+  //       'email' => 'required|email',
+  //       'password' => 'required',
+  //     ]);
+
+  //     // Check if validation fails
+  //     if ($validator->fails()) {
+  //       return redirect("login")
+  //         ->withErrors($validator)
+  //         ->withInput();  // Optional: Keep input values after redirect
+  //     }
+
+  //     // User login attempt
+  //     $userData = array(
+  //       'email' => $req->get('email'),
+  //       'password' => $req->get('password')
+  //     );
+
+  //     // Retrieve the user based on email
+  //     $checkUser = User::where('email', $req->get('email'))->first();
+
+  //     if ($checkUser) {
+  //       // Set the role and user type
+  //       $role = $checkUser->role_id;
+  //       switch ($role) {
+  //         case 1:
+  //           $userType = 'admin';
+  //           break;
+  //         case 2:
+  //           $userType = 'company';
+  //           break;
+  //         case 3:
+  //           $userType = 'user';
+  //           break;
+  //         default:
+  //           return redirect('login')->withErrors(['error' => 'Invalid role.']);
+  //       }
+  //     } else {
+  //       return redirect("registration")->withErrors(['error' => 'Register first.']);
+  //     }
+
+  //     // Authenticate the user with the respective guard
+  //     if (Auth::guard($userType)->attempt($userData)) {
+  //       $user = Auth::guard($userType)->user();
+
+  //       // Check user status: if active and verified
+  //       if ($user->is_active == 1 && $user->is_verified == 1) {
+  //         // Redirect to dashboard
+  //         return redirect($userType . "/dashboard");
+  //       } else {
+  //         // If user is deactivated or not verified
+  //         Auth::guard($userType)->logout();
+  //         Session::flush();
+
+  //         // Flash message and redirect
+  //         Session::flash('status', "This user account has been deactivated.");
+  //         return redirect("login")->withErrors(['error' => 'This user account has been deactivated.']);
+  //       }
+  //     } else {
+  //       // If authentication fails, logout and redirect with error message
+  //       Auth::guard($userType)->logout();
+  //       Session::flush();
+  //       Session::flash('status', "Invalid Login");
+  //       return redirect("login")->withErrors(['error' => 'Invalid Email or Password.']);
+  //     }
+  //   } else {
+
+  //     // check if allready login then redirect on it's Dashboard 
+  //     $company = auth()->guard('company')->user();
+  //     if ($company) {
+  //       return redirect("company/dashboard");
+  //     }
+
+  //     $admin = auth()->guard('admin')->user();
+  //     if ($admin) {
+  //       return redirect("admin/dashboard");
+  //     }
+
+  //     $user = auth()->guard('user')->user();
+  //     if ($user) {
+  //       return redirect("user/dashboard");
+  //     }
+
+  //     // Return the login view for GET request
+  //     return view('auth.login');
+  //   }
+  // }
+
+  
   public function login(Request $req)
   {
     if ($req->method() == 'POST') {
@@ -327,7 +420,8 @@ class HomeController extends Controller
             return redirect('login')->withErrors(['error' => 'Invalid role.']);
         }
       } else {
-        return redirect("registration")->withErrors(['error' => 'Register first.']);
+        // return redirect("registration")->withErrors(['error' => 'Register first.']);
+        return redirect("login")->withErrors(['error' => 'Invalid User']);
       }
 
       // Authenticate the user with the respective guard
