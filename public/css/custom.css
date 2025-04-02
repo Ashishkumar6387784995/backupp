@@ -1,0 +1,8 @@
+ul.breadcrumb.breadcrumb-transparent.font-weight-bold.p-0.my-2.font-size-sm {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 41px;
+    font-size: 13px;
+    font-weight: 600;
+}
