@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/assets/fonts/flaticon.css')}}">
 <!-- Odometer CSS -->
 <link rel="stylesheet" href="{{ asset('css/custom.css')}}">
+<link rel="stylesheet" href="{{ asset('css/toaster.css')}}">
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/odometer.min.css') }}">
 <!-- Style CSS -->
 <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css')}}">

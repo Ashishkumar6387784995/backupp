@@ -12,6 +12,7 @@ use App\Models\Company;
 use App\Models\Service;
 use App\Models\Post;
 use App\Models\Job;
+use App\Models\SavedJobs;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
@@ -149,16 +150,40 @@ class HomeController extends Controller
   }
 
 
-  public function jobSaveApi($slug)
+  public function jobSaveApi(Request $request)
   {
     try {
+      $request->validate([
+        'job_slug' => 'required|string'
+      ]);
+
+      $slug = $request->get('job_slug');
       $jobs = Job::with('jobType', 'jobExperience')->where('status', 1)->where('slug', $slug)->first();
 
-      return response()->json([
-        'success' => true,
-        'message' => 'Jobs saves successfully.',
-        'data' => $jobs
-      ], 200);
+      
+      if ($jobs) {
+        $user = auth()->guard('user')->user();
+        
+        $checkAlreadySavedJobs = SavedJobs::where('user_id', $user->id)->where('job_id', $jobs->id)->first();
+        if(!$checkAlreadySavedJobs) {
+          $data = new SavedJobs();
+          $data->user_id = $user->id;
+          $data->job_id = $jobs->id;
+          $data->save();
+        }
+
+        return response()->json([
+          'success' => true,
+          'message' => 'Jobs saves successfully.',
+          'data' => $jobs
+        ], 200);
+
+      }else {
+        return response()->json([
+          'success' => false,
+          'message' => 'Could not find job details.',
+        ], 200);
+      }
     } catch (\Exception $e) {
       return response()->json([
         'success' => false,

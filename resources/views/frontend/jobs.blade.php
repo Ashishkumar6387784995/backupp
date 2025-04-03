@@ -805,7 +805,7 @@
 
          var baseUrl = window.location.origin;
          $.ajax({
-            url: `${baseUrl}/jobDetailsApi/${slug}`, // Adjust the URL as necessary
+            url: `${baseUrl}/jobDetailsApi/${slug}`,
             type: 'GET',
             dataType: 'json',
             success: function(response) {
@@ -891,7 +891,7 @@
                                     <span class="content QuickApply" QuickApply="${job.slug}">Quick apply</span>
                                  </a>
                                  <button type="submit" class="save-job-button rounded-button -secondary -size-lg" data-disabled="">
-                                    <span class="content SaveJob" SaveJob="${job.slug}">Save job</span>
+                                    <span class="content SaveJob" SaveJob="${job.slug}" style="min-width: 100px;">Save job</span>
                                  </button>
                                  <a class="open-new-tab -link-cool" href="{{ url('/') }}/job/${job.slug}" rel="nofollow" target="_blank">Open in new tab</a>
                               </div>
@@ -928,10 +928,9 @@
       // Get the value of the QuickApply attribute (job.slug)
       const jobSlug = $(this).attr('QuickApply');
 
-
       var loggedUser = "{{auth()->guard('user')->user()}}";
       if(!loggedUser){
-         window.location.href = "{{url('login')}}";
+         window.location.href = "{{url('login-first')}}";
          return false;
       }
 
@@ -961,31 +960,55 @@
 <script>
    // Event listener for clicks on .SaveJob elements
    jQuery(document).on('click', '.SaveJob', function() {
+
+      var baseUrl = window.location.origin;
+      
       // Get the value of the SaveJob attribute (job.slug)
-      const jobSlug = $(this).attr('SaveJob');
+      var  btn = $(this);
+      const jobSlug = btn.attr('SaveJob');
+      const firstText = btn.text();
+      btn.attr('diasbled', true);
 
       var loggedUser = "{{auth()->guard('user')->user()}}";
       if(!loggedUser){
-         window.location.href = "{{url('login')}}";
+         window.location.href = "{{url('login-first')}}";
          return false;
       }
 
+      // Get CSRF token from meta tag
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
       // Send AJAX request to the server
       $.ajax({
-         url: 'jobSaveApi',
+         url: `${baseUrl}/jobSaveApi`,
          type: 'POST',
+         headers: {
+            'X-CSRF-TOKEN': csrfToken  // Include CSRF token in the header
+         },
          data: {
             job_slug: jobSlug
          },
+         beforeSend: function(){
+            btn.html('<span class="spinner-border spinner-border-md text-success-role=" status"="" aria-hidden="true"></span>');
+         },
          success: function(response) {
             // Handle successful response
-            alert('Job saved successfully');
             console.log(response);
+            if (response.success) {
+               showToast(response.message, "success");
+            }else{
+               showToast(response.message, "error");
+            }
+            btn.html(firstText);
+            btn.attr('diasbled', false);
          },
          error: function(xhr, status, error) {
             // Handle errors
-            alert('There was an error applying for the job.');
+            showToast("There was an error applying for the job.", "error");
             console.error('Error:', error);
+            
+            btn.html(firstText);
+            btn.attr('diasbled', false);
          }
       });
    });

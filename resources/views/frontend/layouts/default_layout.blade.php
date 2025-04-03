@@ -51,6 +51,7 @@
       <script src="{{ asset('frontend/assets/js/jquery.appear.min.js') }}"></script>
       <!-- Custom JS -->
       <script src="{{ asset('frontend/assets/js/custom.js') }}"></script>
+      <script src="{{ asset('js/toaster.js') }}"></script>
       @yield('script')
  <!-- Select2 -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>

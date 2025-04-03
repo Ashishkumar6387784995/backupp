@@ -52,6 +52,16 @@ $kt_logo_image = 'hirezy250.png';
                         <span class="menu-text">Dashboard</span>
                     </a>
                 </li>
+
+                <li class="menu-item menu-item-submenu @yield('savedJobsmaster')" aria-haspopup="true" data-menu-toggle="hover">
+                    <a href="{{url('/')}}/user/saved-jobs" class="menu-link menu-toggle">
+                        <span class="svg-icon menu-icon">
+                            <span class="flaticon-dashboard"></span>
+                        </span>
+                        <span class="menu-text">Saved Jobs</span>
+                    </a>
+                </li>
+
                 <li class="menu-item menu-item-submenu @yield('changePass')" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="{{ route('user.changePass')}}" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">

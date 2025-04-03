@@ -180,7 +180,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::get('/jobDetailsApi/{slug}', [HomeController::class, "jobDetailsApi"]);
 
     // API for save job detals by slug jobs in front-end 
-    Route::get('/jobSaveApi/{slug}', [HomeController::class, "jobSaveApi"]);
+    Route::post('/jobSaveApi', [HomeController::class, "jobSaveApi"]);
    
     Route::get('/job/{slug}', [HomeController::class, "jobsDetais"]);
     Route::get('/jobs/{category}/{jobid}', [JobsController::class, "details"]);
@@ -188,6 +188,11 @@ Route::group(['namespace' => 'Auth'], function () {
     
 
     // Route::get('/company/{companyurl}', [Employer::class, "details"]);
+
+    // login page open with massage
+    Route::get('login-first', function() {
+        return redirect('login')->withErrors(['error' => 'Please login']);
+    });  
 
     Route::any('login',[HomeController::class, "login"]);
     Route::get('registration',[HomeController::class, "registration"]);
@@ -418,6 +423,10 @@ Route::middleware('user')->group(function () {
 
         Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, "index"]);
 
+        Route::get('saved-jobs', [App\Http\Controllers\User\UserDashboardController::class, "savedJobs"]);
+
+        Route::get('saved-jobs-details/{slug}', [App\Http\Controllers\User\UserDashboardController::class, "savedJobsDetails"]);
+
         Route::get('logout', [App\Http\Controllers\User\UserDashboardController::class, "logout"]);
 
         Route::any('change-password', [App\Http\Controllers\User\UserDashboardController::class, "changePassword"])->name('user.changePass');
@@ -426,6 +435,10 @@ Route::middleware('user')->group(function () {
 
         Route::post('profile/update', [App\Http\Controllers\User\UserDashboardController::class, "userprofileUpdate"])->name('user.profile.update');
 
+
+        // APIS
+        // API for fetch all saved jobs in back-end 
+        Route::get('/jobsListApi', [App\Http\Controllers\User\UserDashboardController::class, "jobsListApi"]);
     });
 
 });

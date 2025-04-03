@@ -1272,7 +1272,7 @@ ul {
     list-style-type: disc
 }
 
-.modal {
+/* .modal {
     align-items: center;
     display: flex;
     height: 100%;
@@ -1288,7 +1288,7 @@ ul {
     margin-right: -1.6rem;
     padding-left: 0;
     padding-right: 0
-}
+} */
 
 @supports (left: env(safe-area-inset-left)) {
     .modal {

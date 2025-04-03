@@ -4,14 +4,17 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\{Candidate,User};
+use App\Models\{Candidate, User};
+use App\Models\Job;
 use DB;
 use Validator;
 use Auth;
 use Hash;
+
 class UserDashboardController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         try {
             $page_title = 'Dashboard';
             $page_description = '';
@@ -29,25 +32,102 @@ class UserDashboardController extends Controller
         }
     }
 
-    public function userprofile()  {
-        $page_title = 'Profile';
+
+    public function savedJobs()
+    {
+        try {
+            $page_title = 'Saved Jobs';
             $page_description = '';
             $breadcrumbs = [
                 [
-                    'title' => 'Profile',
+                    'title' => 'Saved Jobs',
                     'url' => '',
                 ],
             ];
+            // die('hi');
+            return view('user.pages.savedJobs.list', compact('page_title', 'page_description', 'breadcrumbs'));
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+
+    public function jobsListApi()
+    {
+        try {
+            $user = auth()->guard('user')->user();
+
+            // Ensure the user is logged in before fetching jobs
+            if (!$user) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not authenticated.'
+                ], 401);
+            }
+
+            // Fetch jobs with the necessary relationships and conditions
+            $jobs = Job::with('jobType', 'jobExperience')
+                ->select('jobs.*')
+                ->join('saved_jobs', 'saved_jobs.job_id', '=', 'jobs.id')
+                ->where('saved_jobs.user_id', $user->id)
+                ->where('jobs.status', 1)
+                ->orderBy('jobs.created_at', 'desc')
+                ->get();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Jobs fetched successfully.',
+                'data' => $jobs
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch jobs.',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function savedJobsDetails($slug)
+    {
+        try {
+            $page_title = 'Saved Jobs Details';
+            $page_description = '';
+            $breadcrumbs = [
+                [
+                    'title' => 'saved Jobs Details',
+                    'url' => '',
+                ],
+            ];
+            // die('hi');
+            return view('user.pages.savedJobs.details', compact('page_title', 'page_description', 'breadcrumbs', 'slug'));
+        } catch (\Exception $e) {
+            dd($e);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function userprofile()
+    {
+        $page_title = 'Profile';
+        $page_description = '';
+        $breadcrumbs = [
+            [
+                'title' => 'Profile',
+                'url' => '',
+            ],
+        ];
         $id = auth()->guard('user')->user()->id;
         $details = Candidate::with('user')->where('user_id', $id)->first();
         $candidate_skills = DB::table('candidate_skills')->select('skill_id')->where('user_id', $details->user_id)->pluck('skill_id')->toArray();
-            
-        $candidate_languages = DB::table('candidate_language')->select('language_id')->where('user_id', $details->user_id)->pluck('language_id')->toArray();
-        return view('user.pages.profile.profile', compact('page_title', 'page_description', 'breadcrumbs','details','candidate_skills','candidate_languages'));
 
+        $candidate_languages = DB::table('candidate_language')->select('language_id')->where('user_id', $details->user_id)->pluck('language_id')->toArray();
+        return view('user.pages.profile.profile', compact('page_title', 'page_description', 'breadcrumbs', 'details', 'candidate_skills', 'candidate_languages'));
     }
 
-    public function userprofileUpdate(Request $request) {
+    public function userprofileUpdate(Request $request)
+    {
         try {
             $id = auth()->guard('user')->user()->id;
             if ($request->isMethod('post')) {
@@ -207,14 +287,14 @@ class UserDashboardController extends Controller
                 DB::commit();
                 return redirect('user/dashboard')->with('success', 'Profile updated successfully.');
             }
-    
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors($e->getMessage());
         }
     }
 
-    public function changePassword(Request $request) {
+    public function changePassword(Request $request)
+    {
         try {
             if ($request->isMethod('post')) {
                 // dd($request->all());
@@ -227,21 +307,21 @@ class UserDashboardController extends Controller
                     'password.min' => 'New password must be at least 8 characters.',
                     'password.confirmed' => 'New password confirmation does not match.',
                 ]);
-    
+
                 if ($validator->fails()) {
                     return redirect()->back()->withErrors($validator)->withInput();
                 }
-    
+
                 // Check if current password matches the one in the database
                 $user = Auth::guard('user')->user();
                 if (!Hash::check($request->old_password, $user->password)) {
                     return redirect()->back()->withErrors(['current_password' => 'The current password is incorrect.']);
                 }
-    
+
                 // Update the password in the database
                 $user->password = Hash::make($request->password);
                 $user->save();
-    
+
                 return redirect()->back()->with('success', 'Password updated successfully.');
             }
             return view('user.pages.profile.changePassword');
@@ -251,7 +331,8 @@ class UserDashboardController extends Controller
         }
     }
 
-    public function logout() {
+    public function logout()
+    {
         auth()->guard('user')->logout();
         return redirect('user/login');
     }
