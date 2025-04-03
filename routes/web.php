@@ -176,8 +176,11 @@ Route::group(['namespace' => 'Auth'], function () {
     // API for fetch all active jobs in front-end 
     Route::get('/jobsListApi', [HomeController::class, "jobsListApi"]);
 
-    // API for fetch job detals by id jobs in front-end 
+    // API for fetch job detalis by slug jobs in front-end 
     Route::get('/jobDetailsApi/{slug}', [HomeController::class, "jobDetailsApi"]);
+
+    // API for save job detals by slug jobs in front-end 
+    Route::get('/jobSaveApi/{slug}', [HomeController::class, "jobSaveApi"]);
    
     Route::get('/job/{slug}', [HomeController::class, "jobsDetais"]);
     Route::get('/jobs/{category}/{jobid}', [JobsController::class, "details"]);

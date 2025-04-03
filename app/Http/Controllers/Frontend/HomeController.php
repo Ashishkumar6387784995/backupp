@@ -148,6 +148,26 @@ class HomeController extends Controller
     }
   }
 
+
+  public function jobSaveApi($slug)
+  {
+    try {
+      $jobs = Job::with('jobType', 'jobExperience')->where('status', 1)->where('slug', $slug)->first();
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Jobs saves successfully.',
+        'data' => $jobs
+      ], 200);
+    } catch (\Exception $e) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Failed to fetch jobs.',
+        'error' => $e->getMessage()
+      ], 500);
+    }
+  }
+
   public function companies()
   {
     try {

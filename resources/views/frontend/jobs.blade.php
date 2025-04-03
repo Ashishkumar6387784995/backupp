@@ -601,128 +601,7 @@
 </div>
 @endsection
 @section('styleSheets')
-<style>
-   .fixed-top {
-      position: static;
-      margin-bottom: 10px;
-   }
-
-   .main-nav {
-      position: static;
-   }
-
-   .searchBoxHeader_ {
-      background: #fafafa;
-      display: block;
-      padding-left: 3rem;
-      margin-bottom: 4rem;
-      padding: 30px;
-   }
-
-   .search-header .search-form-container {
-      margin: 0 auto;
-      padding-top: 1.6rem;
-   }
-
-   .search-form.-desktop-only {
-      width: 72.5%;
-   }
-
-   .autocomplete-container {
-      position: relative;
-   }
-
-   .search-form>.search-input-field {
-      flex: 1 1 40%;
-      margin-right: 1.6rem;
-   }
-
-   .location-input.search-input-field.input-field label,
-   .keyword-input.search-input-field.input-field label {
-      display: block;
-   }
-
-   .search-form.-desktop-only {
-      width: 72.5%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-   }
-
-   .search-form>.search-input-field input {
-      background-position: center right 1.2rem;
-      /* padding-right: 3.52rem; */
-      margin-bottom: 0px;
-      background-color: #fff;
-      padding: 10px;
-      width: 100%;
-      /* border: none; */
-      outline: none;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-   }
-
-   .searchButton {
-      margin-top: 10px;
-   }
-
-   .rounded-button.-primary {
-      background-color: #0e8136;
-      color: #fff;
-   }
-
-   .rounded-button.-w-full {
-      width: 150%;
-      height: 50px;
-      border-radius: 4px;
-   }
-
-   .pill-desktop-filters {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 1.6rem;
-      align-items: center;
-   }
-
-   /* Hide the dropdown by default */
-   /* Show the dropdown when active */
-   .dropdown-options-container {
-      display: block;
-      position: absolute;
-      background-color: white;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      width: 100%;
-      margin-top: 10px;
-   }
-
-   .personalized-tags-pill-dropdown.pill-dropdown.dropdown-container ul.dropdown-options-container {
-      display: block;
-      max-width: 200px;
-   }
-
-   .personalized-tags-pill-dropdown.pill-dropdown.dropdown-container ul.dropdown-options-container.hidden {
-      display: none;
-   }
-
-   .dropdown-item {
-      padding: 10px;
-      cursor: pointer;
-      text-align: left;
-   }
-
-   .dropdown-item:hover {
-      background-color: #f1f1f1;
-   }
-
-   button.dropdownBtn.inline-flex.justify-center.w-full.rounded-full.border.border-gray-300.shadow-sm.px-8.py-3.bg-white.text-lg.font-medium.text-gray-700.hover\:bg-gray-50.focus\:outline-none {
-      font-size: 13px;
-   }
-
-   a.dropdownBtn.inline-flex.justify-center.w-full.rounded-full.border.border-gray-300.shadow-sm.px-8.py-3.bg-white.text-lg.font-medium.text-gray-700.hover\:bg-gray-50.focus\:outline-none {
-      font-size: 13px;
-   }
-</style>
+<link rel="stylesheet" href="{{ asset('css/jobs.css')}}">
 @endsection
 @section('script')
 <script>
@@ -867,7 +746,7 @@
                         </div>
                         <div class="badges">
                            <div class="badge -quick-apply-badge">
-                              <div class="content">Quick apply</div>
+                              <div class="content QuickApply" QuickApply="${job.slug}">Quick apply</div>
                            </div>
                            <div class="badge -default-badge">
                               <div class="content">${salary}</div>
@@ -898,12 +777,14 @@
                }
 
             } else {
-               alert('Error: ' + (response.message || 'Unknown error'));
+               // alert('Error: ' + (response.message || 'Unknown error'));
+               $('#showJobsDetails').html('<p style="color: red;">'.response.message || 'Unknown error</p>');
             }
          },
          error: function(xhr) {
             console.error(xhr.responseText);
-            alert('Failed while fetching data. Please try again.');
+            // alert('Failed while fetching data. Please try again.');
+            $('#showJobsDetails').html('<p style="color: red;">Failed while fetching data. Please try again.</p>');
          }
       });
    });
@@ -1007,10 +888,10 @@
                            <div class="job-view-actions-container top-actions-container">
                               <div class="action-buttons-container">
                                  <a class="rounded-button -primary -size-lg -w-full">
-                                    <span class="content">Quick apply</span>
+                                    <span class="content QuickApply" QuickApply="${job.slug}">Quick apply</span>
                                  </a>
                                  <button type="submit" class="save-job-button rounded-button -secondary -size-lg" data-disabled="">
-                                    <span class="content">Save job</span>
+                                    <span class="content SaveJob" SaveJob="${job.slug}">Save job</span>
                                  </button>
                                  <a class="open-new-tab -link-cool" href="{{ url('/') }}/job/${job.slug}" rel="nofollow" target="_blank">Open in new tab</a>
                               </div>
@@ -1027,15 +908,86 @@
 
 
                } else {
-                  alert('Failed to fetch job details');
+                  $('#showJobsDetails').html('<p style="color: red;">Failed to fetch job details</p>');
                }
             },
             error: function(xhr) {
                console.error(xhr.responseText);
-               alert('Error fetching job details');
+               // alert('Error fetching job details');
+               $('#showJobsDetails').html('<p style="color: red;">Error fetching job details</p>');
             }
          });
       }
+   });
+</script>
+
+<!-- code for Quick Apply -->
+<script>
+   // Event listener for clicks on .QuickApply elements
+   jQuery(document).on('click', '.QuickApply', function() {
+      // Get the value of the QuickApply attribute (job.slug)
+      const jobSlug = $(this).attr('QuickApply');
+
+
+      var loggedUser = "{{auth()->guard('user')->user()}}";
+      if(!loggedUser){
+         window.location.href = "{{url('login')}}";
+         return false;
+      }
+
+      // Send AJAX request to the server
+      $.ajax({
+         url: 'apply-job.php',
+         type: 'POST',
+         data: {
+            job_slug: jobSlug
+         },
+         success: function(response) {
+            // Handle successful response
+            alert('Application successful for job: ' + jobSlug);
+            console.log(response);
+         },
+         error: function(xhr, status, error) {
+            // Handle errors
+            alert('There was an error applying for the job.');
+            console.error('Error:', error);
+         }
+      });
+   });
+</script>
+
+
+<!-- code for Save Job -->
+<script>
+   // Event listener for clicks on .SaveJob elements
+   jQuery(document).on('click', '.SaveJob', function() {
+      // Get the value of the SaveJob attribute (job.slug)
+      const jobSlug = $(this).attr('SaveJob');
+
+      var loggedUser = "{{auth()->guard('user')->user()}}";
+      if(!loggedUser){
+         window.location.href = "{{url('login')}}";
+         return false;
+      }
+
+      // Send AJAX request to the server
+      $.ajax({
+         url: 'jobSaveApi',
+         type: 'POST',
+         data: {
+            job_slug: jobSlug
+         },
+         success: function(response) {
+            // Handle successful response
+            alert('Job saved successfully');
+            console.log(response);
+         },
+         error: function(xhr, status, error) {
+            // Handle errors
+            alert('There was an error applying for the job.');
+            console.error('Error:', error);
+         }
+      });
    });
 </script>
 
