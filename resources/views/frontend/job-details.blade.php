@@ -242,7 +242,11 @@
                            </div>
                         </div>
                         <div class="job-view-actions-container top-actions-container">
-                           <div class="action-buttons-container"><a class="apply-button rounded-button -primary -size-lg -w-full" data-gtm="apply-job" data-ga4-on-click="true" data-ga4="{&quot;name&quot;:&quot;job_detail__view_or_apply&quot;,&quot;params&quot;:{&quot;job_feed&quot;:&quot;organic&quot;,&quot;user_id&quot;:null,&quot;site_id&quot;:&quot;au&quot;}}" data-action="click->hubble--job#track" data-hubble--job-events-param="[{&quot;name&quot;:&quot;job_apply_linkout_displayed&quot;,&quot;properties&quot;:{&quot;slug&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;}},{&quot;name&quot;:&quot;job_apply_pressed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;,&quot;linkout&quot;:true,&quot;thirdPartyLink&quot;:true}}]" data-js-open-ea-modal="true" data-rank="2" rel="nofollow noopener" target="_blank" href="/job/rd/52488ba16b2c398e0675805b4eb44dc6?abstract_type=extended_llm&amp;asp=jdv&amp;disallow=true&amp;fsv=true&amp;sp=viewjob&amp;sponsored=false&amp;sq=Entry+Level&amp;sr=2&amp;tk=vUqKxTDJNWMurmdJASUY-44zC8lqOoyloTxgE_FmL"><span class="content">View or apply for job</span></a><button type="submit" class="save-job-button rounded-button -secondary -size-lg"><span class="content">Save job</span></button></div>
+                           <div class="action-buttons-container"><a class="apply-button rounded-button -primary -size-lg -w-full" data-gtm="apply-job" data-ga4-on-click="true" data-ga4="{&quot;name&quot;:&quot;job_detail__view_or_apply&quot;,&quot;params&quot;:{&quot;job_feed&quot;:&quot;organic&quot;,&quot;user_id&quot;:null,&quot;site_id&quot;:&quot;au&quot;}}" data-action="click->hubble--job#track" data-hubble--job-events-param="[{&quot;name&quot;:&quot;job_apply_linkout_displayed&quot;,&quot;properties&quot;:{&quot;slug&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;}},{&quot;name&quot;:&quot;job_apply_pressed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;,&quot;linkout&quot;:true,&quot;thirdPartyLink&quot;:true}}]" data-js-open-ea-modal="true" data-rank="2" rel="nofollow noopener" target="_blank" href="/job/rd/52488ba16b2c398e0675805b4eb44dc6?abstract_type=extended_llm&amp;asp=jdv&amp;disallow=true&amp;fsv=true&amp;sp=viewjob&amp;sponsored=false&amp;sq=Entry+Level&amp;sr=2&amp;tk=vUqKxTDJNWMurmdJASUY-44zC8lqOoyloTxgE_FmL"><span class="content">View or apply for job</span></a>
+                              <button type="submit" class="save-job-button rounded-button -secondary -size-lg">
+                                 <span class="content SaveJob" SaveJob="${job.slug}" style="min-width: 100px;">Save job</span>
+                              </button>
+                           </div>
                         </div>
 
                         <div class="-desktop-no-padding-top" id="job-description-container">
@@ -250,7 +254,9 @@
                            ${jobDescription}
 
                            <div class="job-view-actions-container top-actions-container">
-                              <div class="action-buttons-container"><a class="apply-button rounded-button -primary -size-lg -w-full" data-gtm="apply-job" data-ga4-on-click="true" data-ga4="{&quot;name&quot;:&quot;job_detail__view_or_apply&quot;,&quot;params&quot;:{&quot;job_feed&quot;:&quot;organic&quot;,&quot;user_id&quot;:null,&quot;site_id&quot;:&quot;au&quot;}}" data-action="click->hubble--job#track" data-hubble--job-events-param="[{&quot;name&quot;:&quot;job_apply_linkout_displayed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;}},{&quot;name&quot;:&quot;job_apply_pressed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;,&quot;linkout&quot;:true,&quot;thirdPartyLink&quot;:true}}]" data-js-open-ea-modal="true" data-rank="2" rel="nofollow noopener" target="_blank" href="/job/rd/52488ba16b2c398e0675805b4eb44dc6?abstract_type=extended_llm&amp;asp=jdv&amp;disallow=true&amp;fsv=true&amp;sp=viewjob&amp;sponsored=false&amp;sq=Entry+Level&amp;sr=2&amp;tk=vUqKxTDJNWMurmdJASUY-44zC8lqOoyloTxgE_FmL"><span class="content">View or apply for job</span></a><button type="submit" class="save-job-button rounded-button -secondary -size-lg"><span class="content">Save job</span></button></div>
+                              <div class="action-buttons-container"><a class="apply-button rounded-button -primary -size-lg -w-full" data-gtm="apply-job" data-ga4-on-click="true" data-ga4="{&quot;name&quot;:&quot;job_detail__view_or_apply&quot;,&quot;params&quot;:{&quot;job_feed&quot;:&quot;organic&quot;,&quot;user_id&quot;:null,&quot;site_id&quot;:&quot;au&quot;}}" data-action="click->hubble--job#track" data-hubble--job-events-param="[{&quot;name&quot;:&quot;job_apply_linkout_displayed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;}},{&quot;name&quot;:&quot;job_apply_pressed&quot;,&quot;properties&quot;:{&quot;jobId&quot;:&quot;52488ba16b2c398e0675805b4eb44dc6&quot;,&quot;linkout&quot;:true,&quot;thirdPartyLink&quot;:true}}]" data-js-open-ea-modal="true" data-rank="2" rel="nofollow noopener" target="_blank" href="/job/rd/52488ba16b2c398e0675805b4eb44dc6?abstract_type=extended_llm&amp;asp=jdv&amp;disallow=true&amp;fsv=true&amp;sp=viewjob&amp;sponsored=false&amp;sq=Entry+Level&amp;sr=2&amp;tk=vUqKxTDJNWMurmdJASUY-44zC8lqOoyloTxgE_FmL"><span class="content">View or apply for job</span></a><button type="submit" class="save-job-button rounded-button -secondary -size-lg">
+                                 <span class="content SaveJob" SaveJob="${job.slug}" style="min-width: 100px;">Save job</span>
+                              </div>
                            </div>
                         </div>
                      </div>
@@ -297,6 +303,64 @@
             console.error(xhr.responseText);
             // alert('Error fetching job details');
             $('#showJobsDetails').html('<p style="color: red;">Error fetching job details</p>');
+         }
+      });
+   });
+</script>
+
+<!-- code for Save Job -->
+<script>
+   // Event listener for clicks on .SaveJob elements
+   jQuery(document).on('click', '.SaveJob', function() {
+
+      var baseUrl = window.location.origin;
+      
+      // Get the value of the SaveJob attribute (job.slug)
+      var  btn = $(this);
+      const jobSlug = btn.attr('SaveJob');
+      const firstText = btn.text();
+      btn.attr('diasbled', true);
+
+      var loggedUser = "{{auth()->guard('user')->user()}}";
+      if(!loggedUser){
+         window.location.href = "{{url('login-first')}}";
+         return false;
+      }
+
+      // Get CSRF token from meta tag
+      var csrfToken = $('meta[name="csrf-token"]').attr('content');
+
+      // Send AJAX request to the server
+      $.ajax({
+         url: `${baseUrl}/jobSaveApi`,
+         type: 'POST',
+         headers: {
+            'X-CSRF-TOKEN': csrfToken  // Include CSRF token in the header
+         },
+         data: {
+            job_slug: jobSlug
+         },
+         beforeSend: function(){
+            btn.html('<span class="spinner-border spinner-border-md text-success-role=" status"="" aria-hidden="true"></span>');
+         },
+         success: function(response) {
+            // Handle successful response
+            console.log(response);
+            if (response.success) {
+               showToast(response.message, "success");
+            }else{
+               showToast(response.message, "error");
+            }
+            btn.html(firstText);
+            btn.attr('diasbled', false);
+         },
+         error: function(xhr, status, error) {
+            // Handle errors
+            showToast("There was an error applying for the job.", "error");
+            console.error('Error:', error);
+            
+            btn.html(firstText);
+            btn.attr('diasbled', false);
          }
       });
    });
