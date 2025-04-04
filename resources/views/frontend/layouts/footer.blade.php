@@ -7,7 +7,7 @@
           <p>Our service extends from providing address and contact details of business establishments around the country, to making orders and reservations for leisure, medical, financial, travel and domestic purposes. We enlist business information across varied sectors like Hotels, Restaurants, Auto Care, Home Decor, Personal and Pet Care, Fitness, Insurance, Real Estate, Sports, Schools, etc. from all over the country. Holding information right from major cities like Mumbai, Delhi, Bangalore, Hyderabad, Chennai, Ahmedabad and Pune our reach stretches out to other smaller cities across the country too.</p>
        </div>
        <div class="row  justify-content-center bordertop">
-          <div class="col-sm-6 col-lg-3">
+          <div class="col-sm-6 col-lg-5">
              <div class="footer-item">
                 <div class="footer-logo">
                    <a href="{{ url('/') }}">

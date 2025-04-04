@@ -5,6 +5,7 @@
 <div class="page-content">
 
 
+
     <!-- INNER PAGE BANNER -->
     <section class="company-overview">
        <div class="container">
@@ -39,16 +40,22 @@
 
          <div class="companiesname">
 
-            <a href="#">MNCs <i class="icofont-simple-right"></i></a>
+            <a href="#">MNCs <i class="icofont-simple-right"></i></a> <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
 
             <p>2K+ are Actively Hiring</p>
 
             <div class="complogo">
+
                <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+
                <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+
                <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+
                <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+
             </div>
+
          </div>
 
       </div>

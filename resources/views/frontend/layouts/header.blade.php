@@ -19,40 +19,57 @@
             </a>
             <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
                <ul class="navbar-nav">
-                  <li class="nav-item">
-                     <a href="{{ route('home.postTask') }}" class="nav-link dropdown-toggle active">Post Task <i class="icofont-simple-down"></i></a>
+               <li class="nav-item dropdown">
+                     <a href="{{ route('home.jobs') }}" class="nav-link dropdown-toggle active">Jobs <i class="icofont-simple-down"></i></a>
+                     <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Abc </a></li>
+                       <li><a class="dropdown-item" href="#">Abc</a></li>
+                     </ul>
                   </li>
-                  <li class="nav-item">
-                     <a href="{{ route('home.categories') }}" class="nav-link">Categorys </a>
-                  </li>
-                  <li class="nav-item">
-                     <a href="{{ route('home.jobs') }}" class="nav-link dropdown-toggle">Jobs <i class="icofont-simple-down"></i></a>
-                  </li>
-                  <li class="nav-item">
+                  <li class="nav-item dropdown">
                      <a href="{{ route('home.companies') }}" class="nav-link dropdown-toggle">Companies  <i class="icofont-simple-down"></i></a>
+                     <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Employer </a></li>
+                     </ul>
                   </li>
                   <li class="nav-item">
-                     <a href="{{ route('home.services') }}" class="nav-link dropdown-toggle">Services <i class="icofont-simple-down"></i></a>
+                     <a href="{{ route('home.categories') }}" class="nav-link">categories </a>
                   </li>
+                  <li class="nav-item">
+                     <a href="{{ route('home.services') }}" class="nav-link dropdown-toggle">Services Provider</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a href="{{ route('home.postTask') }}" class="nav-link dropdown-toggle ">Post Job <i class="icofont-simple-down"></i></a>
+                     <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Abc </a></li>
+                       <li><a class="dropdown-item" href="#">Abc</a></li>
+                     </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a href="#" class="nav-link dropdown-toggle ">Products <i class="icofont-simple-down"></i></a>
+                    <ul class="dropdown-menu">
+                       <li><a class="dropdown-item" href="#">Abc </a></li>
+                       <li><a class="dropdown-item" href="#">Abc</a></li>
+                     </ul>
+                  </li>
+                  
+              
                </ul>
                <div class="common-btn d-flex">
                   <div class="nav-item dropdown">
-                     <!-- <a class="login-btn navBtn dropdown-toggle" type="button" href="{{url('login')}}">
-                      Login
-                     </a> -->
-                     <!-- <ul class="dropdown-menu">
-                       <li><a class="dropdown-item" href="{{ url('company/login') }}">Company</a></li>
-                       <li><a class="dropdown-item" href="{{ url('user/login') }}">Job Seeker</a></li>
-                     </ul> -->
+                    <a class="sign-up-btn login-btn navBtn dropdown-toggle" type="button" href="{{url('login')}}">
+                      Create Free Account
+                     </a> 
+                    
                    </div>
                    <div class="nav-item dropdown">
                      <a class="sign-up-btn navBtn dropdown-toggle" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" href="#">
                      Login/Register
                      </a>
-                     <!-- <ul class="dropdown-menu">
+                     <ul class="dropdown-menu">
                        <li><a class="dropdown-item" href="{{ url('company/registration') }}">Company</a></li>
                        <li><a class="dropdown-item" href="{{ url('user/registration') }}">Job Seeker</a></li>
-                     </ul> -->
+                     </ul> 
                    </div>
                   
                </div>
