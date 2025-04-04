@@ -303,9 +303,9 @@
 
 
                             <!-- code for manage company sponsers  -->
-                            <div class="company_sponsers">
+                            <div class="company_sponsers col-md-12">
                                 <div class="form-group col-md-12 mb-3">
-                                    <h3>Company Sponsers:</h3>
+                                    <h3>Sponsors Company:</h3>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <div class="card card-custom">
@@ -315,7 +315,7 @@
                                             </div>
                                             <div class="card-toolbar">
                                                 <a href="javascript:void(0);" class="btn btn-primary font-weight-bolder" data-toggle="modal" data-target="#exampleModalNew">
-                                                    <i class="la la-plus"></i>Add Company</a>
+                                                    <i class="la la-plus"></i>Add Sponser</a>
                                             </div>
                                         </div>
                                         <div class="card-body">
@@ -330,18 +330,22 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @if (!empty($company_locations))
-                                                    @foreach ($company_locations as $clocation)
+                                                    @if (!empty($company_sponsers))
+                                                    @foreach ($company_sponsers as $csponser)
                                                     <tr>
-                                                        <td>{{ $clocation->location_name }}</td>
-                                                        <td>{{ $clocation->address }}</td>
-                                                        <td>{{ $clocation->login_url }}</td>
+                                                        <td>{{ $csponser->company_name }}</td>
+                                                        <td>{{ $csponser->company_description }}</td>
                                                         <td>
-                                                            <a href="?edit-location={{$clocation->id}}" class="btn btn-info btn-sm iconBtn_">
+                                                            <a href="{{url('uploads/company/sponsor/' . $csponser->company_logo)}}" target="_blank" rel="noopener noreferrer">
+                                                                <img src="{{ asset('uploads/company/sponsor/' . $csponser->company_logo) }}" alt="logo" height="50px;">
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="?edit-sponsor={{$csponser->id}}" class="btn btn-info btn-sm iconBtn_">
                                                                 <i class="la la-edit"></i>
                                                             </a>
                                                             
-                                                            <a href="{{ url('company/location/delete/'.$clocation->id) }}" class="btn btn-danger btn-sm iconBtn_" onclick="return confirm('Do you want to delete?');">
+                                                            <a href="{{ url('company/sponsor/delete/'.$csponser->id) }}" class="btn btn-danger btn-sm iconBtn_" onclick="return confirm('Do you want to delete?');">
                                                                 <i class="las la-trash"></i>
                                                             </a>
                                                         </td>
@@ -458,6 +462,14 @@
 <script>
     $(document).ready(() => {
         $('#locationQrDetails').modal('show');
+    });
+</script>
+@endif
+
+@if (!empty($sponsorDetails))
+<script>
+    $(document).ready(() => {
+        $('#sponsorDetails').modal('show');
     });
 </script>
 @endif

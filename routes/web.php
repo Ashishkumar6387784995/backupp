@@ -263,11 +263,16 @@ Route::middleware('company')->group(function () {
 
         Route::get('dashboard', [CompanyDashboardController::class, "dashboard"]);
 
+        // location
         Route::post('location-create', [CompanyDashboardController::class, "createCompanyLocation"])->name('company.location.create');
-
         Route::put('location-update/{id}', [CompanyDashboardController::class, "updateCompanyLocation"])->name('company.location.update');
-
         Route::get('location/delete/{id}', [CompanyDashboardController::class, "deleteLocation"]);
+
+
+        // sponsor
+        Route::post('sponsor-create', [CompanyDashboardController::class, "createCompanySponsor"])->name('company.sponsor.create');
+        Route::put('sponsor-update/{id}', [CompanyDashboardController::class, "updateCompanySponsor"])->name('company.sponsor.update');
+        Route::get('sponsor/delete/{id}', [CompanyDashboardController::class, "deleteSponsor"]);
 
         Route::get('logout', [CompanyDashboardController::class, "logout"]);
 

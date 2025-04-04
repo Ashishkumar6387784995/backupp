@@ -7,14 +7,17 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Category;
 use App\Models\Company\ManageRoleUser;
+use App\Models\Company\CompanySponsor;
 use App\Models\{Company,User,CompanyLocation};
-use DB;
-use Validator;
-use Auth;
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use \Carbon\Carbon;
 use App\Models\Company\DesignationCategory;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 
 
@@ -47,10 +50,14 @@ class CompanyDashboardController extends Controller
                     'url' => '',
                 ],
             ];
+
         $id = auth()->guard('company')->user()->id;
         $details = Company::with('user')->where('user_id', $id)->first();
+
+        // dd($details->id);
         $employees = ManageRoleUser::where('status', 1)->get();
         $company_locations = CompanyLocation::where('company_id', $id)->get();
+        $company_sponsers = CompanySponsor::where('company_id', $details->id)->get();
 
         foreach ($company_locations as $location) {
             $location->manager_count = $location->managerCount();
@@ -69,9 +76,16 @@ class CompanyDashboardController extends Controller
         if ($locationQr) {
             $locationQrDetails =  CompanyLocation::where('id', $locationQr)->first() ?? [];
         }
+
+
+        $sponsorDetails = [];
+        $sponsoredit = request()->has('edit-sponsor') ? request('edit-sponsor') : null;
+        if ($sponsoredit) {
+            $sponsorDetails =  CompanySponsor::where('id', $sponsoredit)->where('company_id', $details->id)->first() ?? [];
+        }
         // echo "<pre>";
         // print_r($designation_categories);die;
-        return view('company.pages.profile.profile', compact('page_title', 'page_description', 'breadcrumbs','details','employees','company_locations','designation_categories','locationDetails','locationQrDetails'));
+        return view('company.pages.profile.profile', compact('page_title', 'page_description', 'breadcrumbs','details','employees','company_locations','designation_categories','locationDetails','locationQrDetails', 'company_sponsers', 'sponsorDetails'));
 
     }
 
@@ -385,7 +399,130 @@ class CompanyDashboardController extends Controller
         }
     }
 
+    public function createCompanySponsor(Request $request) {
+        DB::beginTransaction(); // Start transaction
+        // dd($request->all());
     
+        try {
+            // Validate input
+            $validator = Validator::make($request->all(), [
+                'sponsor_company_name'   => 'required|string|max:255',
+                'sponsor_company_description'         => 'required|string|max:255',
+                'sponsor_company_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+    
+            $companyLogo = null;
+            if ($request->hasFile('sponsor_company_logo')) {
+
+                // Get the existing company record
+                $file = $request->file('sponsor_company_logo');
+                $companyLogo = time() . '_sponser_logo.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/company/sponsor'), $companyLogo);
+            }
+
+
+    
+            // Create new company sponser
+            $sponser = new CompanySponsor();
+
+            $user_id = auth()->guard('company')->user()->id;
+            $company_id = Company::where('user_id', $user_id)->first()->id;
+
+            if ($company_id) {
+                $sponser->company_id = $company_id; // Assuming company_id is linked to the logged-in user
+                $sponser->company_name = $request->sponsor_company_name;
+                $sponser->company_description = $request->sponsor_company_description;
+                $sponser->company_logo = $companyLogo;
+                $sponser->save();  // Save to database
+        
+                DB::commit(); // Commit transaction
+        
+                return redirect()->back()->with('success', 'Sponsors company created successfully!');
+            }else {
+                return redirect()->back()->withErrors(['error' => 'Company details not found.']);
+            }
+
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback on failure
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
+        }
+    }
+
+    public function updateCompanySponsor(Request $request, $id)
+    {
+        DB::beginTransaction(); // Start transaction
+        // dd($request->all());
+    
+        try {
+            // Validate input
+            $validator = Validator::make($request->all(), [
+                'sponsor_company_name'   => 'required|string|max:255',
+                'sponsor_company_description' => 'required|string|max:255',
+                'sponsor_company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            // Ensure sponser exists
+            $sponser = CompanySponsor::find($id);
+
+            if (!$sponser) {
+                return redirect()->back()->withErrors('sponser not found.')->withInput();
+            }
+
+                
+            $companyLogo = $sponser->company_logo;
+            if ($request->hasFile('sponsor_company_logo')) {
+
+                // Get the existing company record
+                $file = $request->file('sponsor_company_logo');
+                $companyLogo = time() . '_sponser_logo.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/company/sponsor'), $companyLogo);
+            }
+
+            $sponser->company_name = $request->sponsor_company_name;
+            $sponser->company_description = $request->sponsor_company_description;
+            $sponser->company_logo = $companyLogo;
+            $sponser->save(); // Save to database
+
+            DB::commit(); // Commit transaction
+
+            return redirect()->route('company.profile')->with('success', 'Company sponser updated successfully with QR Code!');
+        } catch (\Exception $e) {
+            DB::rollback(); // Rollback on failure
+            return redirect()->back()->withErrors($e->getMessage())->withInput();
+        }
+    }
+
+    public function deleteSponsor($id)
+    {
+        DB::beginTransaction();  // Start transaction
+
+        try {
+            // Find the company Sponsor by ID
+            $Sponsor = CompanySponsor::find($id);
+
+            // Check if the Sponsor exists
+            if (!$Sponsor) {
+                return redirect()->back()->withErrors('Sponsor not found.');
+            }
+            // Delete the Sponsor from the database
+            $Sponsor->delete();
+
+            DB::commit();  // Commit transaction
+
+            return redirect()->route('company.profile')->with('success', 'Sponsor deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollback();  // Rollback on failure
+            return redirect()->back()->withErrors('An error occurred: ' . $e->getMessage());
+        }
+    }
 
     public function logout() {
         auth()->guard('company')->logout();

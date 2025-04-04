@@ -14,136 +14,67 @@
             <div class="row">
 
                <div class="col-lg-6">
-                  <ul class="nav nav-tabs" id="myTab" role="tablist">
-                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Post Job</button>
-                     </li>
-                     <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Post Type</button>
-                     </li>
+               <div class="banner-text">
 
-                  </ul>
-                  <div class="tab-content" id="myTabContent">
-                     <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+               <div class="slider-text-container">
+	<ul class="dynamic-text">
+		<li><span>Find Your Dream Job Now</span></li>
+	
+	</ul>
+</div>
 
-                        <div class="banner-text">
+<div class="banner-form-area">
 
-                           <h1>Find Your <span>Dream Job Now</span></h1>
+   <form>
 
-                           <p>5 lakh+ jobs for you to explore</p>
+      <div class="row  justify-content-center">
 
-                           <div class="banner-form-area">
+         <div class="col-lg-12">
 
-                              <form>
+            <div class="form-group">
 
-                                 <div class="row  justify-content-center">
+               <input type="text" class="form-control" required placeholder="Job title, keywords, or company">
 
-                                    <div class="col-lg-12">
+               <label>
 
-                                       <div class="form-group">
+                  <i class="icofont-search-1"></i>
 
-                                          <input type="text" class="form-control" required placeholder="Job title, keywords, or company">
+               </label>
 
-                                          <label>
+            </div>
 
-                                             <i class="icofont-search-1"></i>
+         </div>
 
-                                          </label>
+         <div class="col-lg-12">
 
-                                       </div>
+            <div class="form-group city">
 
-                                    </div>
+               <label>
 
-                                    <div class="col-lg-12">
+                  <i class="icofont-location-pin"></i>
 
-                                       <div class="form-group city">
+               </label>
 
-                                          <label>
+               <input type="text" class="form-control" required placeholder="City, state, zip code, or remote">
 
-                                             <i class="icofont-location-pin"></i>
+            </div>
 
-                                          </label>
-
-                                          <input type="text" class="form-control" required placeholder="City, state, zip code, or remote">
-
-                                       </div>
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                       <button type="submit" class="btn banner-form-btn">Find Job</button>
-                                    </div>
-                                 </div>
+         </div>
+         <div class="col-lg-12">
+            <button type="submit" class="btn banner-form-btn">Find Job</button>
+         </div>
+      </div>
 
 
 
-                              </form>
+   </form>
 
-                           </div>
-
-
-
-                        </div>
-                     </div>
-                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-
-                        <div class="banner-text">
-
-                           <h1>Find Your <span>Dream Job Now</span></h1>
-
-                           <p>5 lakh+ jobs for you to explore</p>
-
-                           <div class="banner-form-area">
-
-                              <form>
-
-                                 <div class="row  justify-content-center">
-
-                                    <div class="col-lg-12">
-
-                                       <div class="form-group">
-
-                                          <input type="text" class="form-control" required placeholder="Job title, keywords, or company">
-
-                                          <label>
-
-                                             <i class="icofont-search-1"></i>
-
-                                          </label>
-
-                                       </div>
-
-                                    </div>
-
-                                    <div class="col-lg-12">
-
-                                       <div class="form-group city">
-
-                                          <label>
-
-                                             <i class="icofont-location-pin"></i>
-
-                                          </label>
-
-                                          <input type="text" class="form-control" required placeholder="City, state, zip code, or remote">
-
-                                       </div>
-
-                                    </div>
-                                    <div class="col-lg-12">
-                                       <button type="submit" class="btn banner-form-btn">Find Job</button>
-                                    </div>
-                                 </div>
+</div>
 
 
-                              </form>
 
-                           </div>
-
-
-                        </div>
-                     </div>
-
-                  </div>
+</div>
+                
                </div>
                <div class="col-lg-6">
                   <div class="videos">
@@ -158,6 +89,7 @@
 
 
             <div class="banner-text">
+               <div class="heading commons">Latest Jobs</div>
                <div class="scroll">
                   <div class="banner-btn">
                      @foreach($categories as $categorie)
@@ -181,7 +113,10 @@
 <div class="account-area">
 
    <div class="container">
-
+   <div class="section-title">
+         <h2>Services Provider 
+         </h2>
+      </div>
       <div class="row account-wrap">
          <!-- <div class="col">  <img src="assets/img/cate.png"> </div> -->
 
@@ -444,7 +379,7 @@
             <div class="companiesname">
 
                <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
+               <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
                <p>2K+ are Actively Hiring</p>
 
                <div class="complogo">
@@ -468,7 +403,7 @@
             <div class="companiesname">
 
                <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
+               <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
                <p>2K+ are Actively Hiring</p>
 
                <div class="complogo">
@@ -993,7 +928,7 @@
                   <div class="carousel-item active">
                      <div class="row p-4">
                         <div class="col-sm-12 pt-4 align-items-center">
-                           <img src="https://backupp.com/backupp/public/frontend/assets/img/home-1/user.png" class="rounded-circle img-responsive img-fluid">
+                           <img src="{{ asset('frontend/assets/img/home-1/user.png') }}" class="rounded-circle img-responsive img-fluid">
                         </div>
                         <div class="t-card">
 
