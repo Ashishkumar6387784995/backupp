@@ -728,7 +728,7 @@
                 <div class="why-head">
                     <div class="c-logo c-menu-s"><img class="c-logo" src="{{ asset('frontend/assets/img/logo.png') }}"></div>
                 </div>
-                <div class="head-2">User provides you wide range of real-time engagement with your customers </div>
+                <div class="head-2">We provides you wide range of real-time engagement with your customers </div>
                 <hr>
                 <div class="head-2">Engage with your customer in real-time for longer time as the visit your website.</div>
                 <hr>
@@ -738,7 +738,7 @@
         <div class="container-right">
             <div class="login-div text-center">
                 <div class="c-logo c-menu-s"><img class="c-logo" src="{{ asset('frontend/assets/img/logo.png') }}"></div>
-                <h3 class="mt-2">Job Seeker Login</h3>
+                <h3 class="mt-2">Login</h3>
                 <div>
                     @error('email')
                     <div class="alert alert-danger" role="alert">

@@ -158,48 +158,20 @@
 
 
             <div class="banner-text">
-
                <div class="scroll">
-
                   <div class="banner-btn">
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-                     <a href="create-account.html"><img src="assets/img/1.jpg">
-                        <span><strong>Handyperson</strong>Help With Home Maintenance</span> </a>
-
-
-                  </div>
-
+                     @foreach($categories as $categorie)
+                        <a href="#">
+                           <img src="{{ asset('uploads/category/icons/' . $categorie->category_icon) }}" alt="icon">
+                           <span><strong>{{$categorie->category_name}}</strong>{{$categorie->category_short_description}}</span> 
+                        </a>
+                     @endforeach
+                 </div>
                </div>
-
             </div>
-
          </div>
-
       </div>
-
    </div>
-
 </div>
 
 <!-- End Banner -->
@@ -414,169 +386,37 @@
    <div class="container">
 
       <div class="section-title">
-
          <h2>Most booked services
-
          </h2>
-
       </div>
 
       <div class="profile-slider owl-theme owl-carousel">
 
-         <div class="profile-item">
 
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
+         @foreach($services as $service)
+            <div class="profile-item">
+               <img src="{{ asset('uploads/services/icons/' . $service->icon) }}" alt="Icon">
+               <div class="profile-inner">
+                  <h3>{{$service->name}}</h3>
+                  <!-- <span>299 INR</span> -->
+                  <div class="profile-heart">
+                     <!-- <a href="#"><i class="icofont-star"></i> 4.89 (498K)</a> -->
+                  </div>
                </div>
-
             </div>
+         @endforeach
 
-         </div>
-
-         <div class="profile-item">
-
+         <!-- <div class="profile-item">
             <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
             <div class="profile-inner">
-
                <h3>Haircut for men</h3>
-
                <span>299 INR</span>
-
                <div class="profile-heart">
-
                   <a href="#">
-
                      <i class="icofont-star"></i> 4.89 (498K)</a>
-
                </div>
-
             </div>
-
-         </div>
-
-         <div class="profile-item">
-
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="profile-item">
-
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="profile-item">
-
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="profile-item">
-
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="profile-item">
-
-            <img src="{{ asset('frontend/assets/img/home-1/salone.jpg') }}" alt="Profile">
-
-            <div class="profile-inner">
-
-               <h3>Haircut for men</h3>
-
-               <span>299 INR</span>
-
-               <div class="profile-heart">
-
-                  <a href="#">
-
-                     <i class="icofont-star"></i> 4.89 (498K)</a>
-
-               </div>
-
-            </div>
-
-         </div>
-
+         </div> -->
       </div>
 
    </div>

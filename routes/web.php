@@ -146,6 +146,8 @@ Route::group(['namespace' => 'Auth'], function () {
 
     Route::get('companies',[HomeController::class, "companies"])->name('home.companies');
 
+    Route::get('companies/{slug}',[HomeController::class, "companyDetails"]);
+
     Route::get('services',[HomeController::class, "services"])->name('home.services');
 
     Route::get('testimonials',[HomeController::class, "testimonials"])->name('home.testimonials');
@@ -191,8 +193,8 @@ Route::group(['namespace' => 'Auth'], function () {
 
     // login page open with massage
     Route::get('login-first', function() {
-        return redirect('login')->withErrors(['error' => 'Please login']);
-    });  
+        return redirect('user/login')->withErrors(['error' => 'Please login']);
+    });
 
     Route::any('login',[HomeController::class, "login"]);
     Route::get('registration',[HomeController::class, "registration"]);

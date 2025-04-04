@@ -40,10 +40,11 @@ class HomeController extends Controller
       $blogs = Post::where('is_active', 1)->paginate(15);
       // echo "<pre>";
       // print_r($blogs);die;
-      // $categories = Category::where('is_home_display', 1)->where('status', 1)->get();
-      // $services = Service::where('status', 1)->get();
+      $categories = Category::where('is_home_display', 0)->where('status', 1)->orderby('updated_at', 'DESC')->get()->take('12');
+      $services = Service::where('status', 1)->get();
+
       // return view('frontend.index', compact('categories','services'));
-      return view('frontend.index', compact('page_title', 'page_description', 'breadcrumbs', 'blogs'));
+      return view('frontend.index', compact('page_title', 'page_description', 'breadcrumbs', 'blogs', 'categories', 'services'));
     } catch (\Exception $e) {
       dd($e);
       return redirect()->back()->with('error', $e->getMessage());
@@ -200,6 +201,20 @@ class HomeController extends Controller
       $page_description = '';
       $breadcrumbs = '';
       return view('frontend.companies', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+
+  public function companyDetails()
+  {
+    try {
+      $page_title = 'Company Details';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.companies-details', compact('page_title', 'page_description', 'breadcrumbs'));
     } catch (\Exception $e) {
       dd($e);
       return redirect()->back()->with('error', $e->getMessage());
