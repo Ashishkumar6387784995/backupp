@@ -529,3 +529,4 @@ class CompanyDashboardController extends Controller
         return redirect('company/login');
     }
 }
+

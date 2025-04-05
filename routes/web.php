@@ -146,7 +146,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
     Route::get('companies',[HomeController::class, "companies"])->name('home.companies');
 
-    Route::get('companies/{slug}',[HomeController::class, "companyDetails"]);
+    Route::get('companies/{id}',[HomeController::class, "companyDetails"]);
 
     Route::get('services',[HomeController::class, "services"])->name('home.services');
 
@@ -175,18 +175,22 @@ Route::group(['namespace' => 'Auth'], function () {
 
     Route::get('/jobs', [HomeController::class, "jobs"])->name('home.jobs');
 
-    // API for fetch all active jobs in front-end 
-    Route::get('/jobsListApi', [HomeController::class, "jobsListApi"]);
-
-    // API for fetch job detalis by slug jobs in front-end 
-    Route::get('/jobDetailsApi/{slug}', [HomeController::class, "jobDetailsApi"]);
-
-    // API for save job detals by slug jobs in front-end 
-    Route::post('/jobSaveApi', [HomeController::class, "jobSaveApi"]);
-   
     Route::get('/job/{slug}', [HomeController::class, "jobsDetais"]);
     Route::get('/jobs/{category}/{jobid}', [JobsController::class, "details"]);
 
+
+
+    // start frond end API'S
+        Route::get('/jobsListApi', [HomeController::class, "jobsListApi"]); // API for fetch all active jobs in front-end 
+
+        Route::get('/jobDetailsApi/{slug}', [HomeController::class, "jobDetailsApi"]); // API for fetch job detalis by slug jobs in front-end 
+
+        Route::post('/jobSaveApi', [HomeController::class, "jobSaveApi"]); // API for save job detals by slug jobs in front-end 
+
+        Route::get('/companyListApi', [HomeController::class, "companyListApi"]); // API for fetch all active company in front-end
+
+        Route::get('/companyDetailsApi/{id}', [HomeController::class, "companyDetailsApi"]); // API for fetch active company details by ID in front-end 
+    // end frond end API'S
     
 
     // Route::get('/company/{companyurl}', [Employer::class, "details"]);

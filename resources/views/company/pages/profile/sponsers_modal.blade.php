@@ -19,7 +19,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group col-md-12">
+                    <div class="form-group col-md-12"> 
                         <label>Company Short Description</label>
                         <div>
                             <input type="text" name="sponsor_company_description" value="{{ old('sponsor_company_description') }}" class="form-control" placeholder="Company description" isrequired="required">

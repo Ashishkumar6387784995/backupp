@@ -367,205 +367,25 @@
    <div class="container">
 
       <div class="section-title">
-
          <h2>Top companies hiring now</h2>
-
       </div>
 
-      <div class="row  justify-content-center">
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-               <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
+      <div class="row  justify-content-center" id="companyListShow">
+         {{--
+            <div class="col-lg-3">
+               <div class="companiesname">
+                  <a href="#">MNCs <i class="icofont-simple-right"></i></a>
+                  <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
+                  <p>2K+ are Actively Hiring</p>
+                  <div class="complogo">
+                     <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+                     <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+                     <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+                     <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
+                  </div>
                </div>
-
             </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-               <a class="sc" href="company-details.html">3.9 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></a>
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
-         <div class="col-lg-3">
-
-            <div class="companiesname">
-
-               <a href="#">MNCs <i class="icofont-simple-right"></i></a>
-
-               <p>2K+ are Actively Hiring</p>
-
-               <div class="complogo">
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-                  <a href="#"><img src="{{ asset('frontend/assets/img/home-1/companiesiocn.jpg') }}"></a>
-
-               </div>
-
-            </div>
-
-         </div>
-
+         --}}
       </div>
 
    </div>
@@ -984,6 +804,87 @@
 
 @section('script')
 
+<script>
+    jQuery(function($) {
+        var baseUrl = window.location.origin;
+        var showDiv = $('#companyListShow');
+        showDiv.empty();
+        
+        $.ajax({
+            url: baseUrl + '/companyListApi',
+            type: 'GET',
+            dataType: 'json',
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                if (response.success && Array.isArray(response.data)) {
+                    console.log('Company fetched successfully!', response.data);
+
+                    // Clear previous results
+                    showDiv.empty();
+
+                    // Loop through company data and append to the results container
+                    response.data.forEach(company => {
+
+                        let companyName = '';
+                        if (company.user.first_name) {
+                            companyName = company.user.first_name;
+                        }
+
+                        // Limit to first 12 characters
+                        let first12Characters = companyName.slice(0, 12);
+                        if (companyName.length > 12) {
+                            first12Characters += '...';
+                        }
+
+                        // Handling company sponsors
+                        let sponserHtml = '';
+                        if (Array.isArray(company.get_all_company_sponsers) && company.get_all_company_sponsers.length > 0) {
+                            company.get_all_company_sponsers.forEach(sponser => {
+                                if (sponser.company_logo) {
+                                    sponserHtml += `
+                                        <a href="${baseUrl}/uploads/company/sponsor/${sponser.company_logo}" target="_blank">
+                                            <img src="${baseUrl}/uploads/company/sponsor/${sponser.company_logo}" alt="Logo" style="height: 40px;">
+                                        </a>
+                                    `;
+                                }
+                            });
+                        }
+
+                        showDiv.append(`
+                            <div class="col-lg-3">
+                                <div class="companiesname">
+                                    <a href="${baseUrl}/companies/${company.id}">${first12Characters} <i class="icofont-simple-right"></i></a>
+                                    <a class="sc" href="company-details.html">
+                                        3.9 
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                    </a>
+                                    <p>2K+ are Actively Hiring</p>
+                                    <div class="complogo">
+                                        ${sponserHtml}
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+
+                } else {
+                    // If no success or data is invalid
+                    showDiv.html('<p style="color: red;">' + (response.message || 'Unknown error') + '</p>');
+                }
+            },
+            error: function(xhr) {
+                console.error(xhr.responseText);
+                // Handling error case
+                showDiv.html('<p style="color: red;">Failed while fetching data. Please try again.</p>');
+            }
+        });
+    });
+</script>
 <style>
    const testimonials=[ {
 

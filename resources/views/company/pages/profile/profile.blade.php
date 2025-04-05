@@ -335,7 +335,7 @@
                                                     <tr>
                                                         <td>{{ $csponser->company_name }}</td>
                                                         <td>{{ $csponser->company_description }}</td>
-                                                        <td>
+                                                        <td> 
                                                             <a href="{{url('uploads/company/sponsor/' . $csponser->company_logo)}}" target="_blank" rel="noopener noreferrer">
                                                                 <img src="{{ asset('uploads/company/sponsor/' . $csponser->company_logo) }}" alt="logo" height="50px;">
                                                             </a>

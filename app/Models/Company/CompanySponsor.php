@@ -17,3 +17,4 @@ class CompanySponsor extends Model
         'company_logo',
     ];
 }
+

@@ -207,14 +207,77 @@ class HomeController extends Controller
     }
   }
 
+  
+  public function companyListApi()
+  {
+    try {
+      $companies = Company::select('companies.*')
+                  ->with(['getAllCompanySponsers', 'user'])
+                  ->join('users', 'users.id', '=', 'companies.user_id')
+                  ->where('users.is_active', '1')
+                  ->where('users.is_verified', '1')
+                  ->get();
+      // dd($companies);
 
-  public function companyDetails()
+      return response()->json([
+        'success' => true,
+        'message' => 'Company fetched successfully.',
+        'data' => $companies
+      ], 200);
+
+    } catch (\Exception $e) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Failed to fetch jobs.',
+        'error' => $e->getMessage()
+      ], 500);
+    }
+  }
+
+   
+  public function companyDetailsApi($id)
+  {
+    try {
+      $companies = Company::select('companies.*')
+                  ->with(['getAllCompanySponsers', 'user'])
+                  ->join('users', 'users.id', '=', 'companies.user_id')
+                  ->where('users.is_active', '1')
+                  ->where('users.is_verified', '1')
+                  ->where('companies.id', $id)
+                  ->get();
+      // dd($companies);
+
+      return response()->json([
+        'success' => true,
+        'message' => 'Company fetched successfully.',
+        'data' => $companies
+      ], 200);
+
+    } catch (\Exception $e) {
+      return response()->json([
+        'success' => false,
+        'message' => 'Failed to fetch jobs.',
+        'error' => $e->getMessage()
+      ], 500);
+    }
+  }
+
+  public function companyDetails($id)
   {
     try {
       $page_title = 'Company Details';
       $page_description = '';
       $breadcrumbs = '';
-      return view('frontend.companies-details', compact('page_title', 'page_description', 'breadcrumbs'));
+
+      $company = Company::select('companies.*')
+                  ->with(['getAllCompanySponsers', 'user'])
+                  ->join('users', 'users.id', '=', 'companies.user_id')
+                  ->where('users.is_active', '1')
+                  ->where('users.is_verified', '1')
+                  ->where('companies.id', $id)
+                  ->get();
+
+      return view('frontend.companies-details', compact('page_title', 'page_description', 'breadcrumbs', 'company'));
     } catch (\Exception $e) {
       dd($e);
       return redirect()->back()->with('error', $e->getMessage());

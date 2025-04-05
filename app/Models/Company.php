@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Company\CompanySponsor;
 
 class Company extends Model
 {
@@ -62,5 +63,10 @@ class Company extends Model
     public function activeFeatured()
     {
         return $this->morphOne(FeaturedRecord::class, 'owner')->where('end_time', '>', \Carbon\Carbon::now());
+    }
+
+    public function getAllCompanySponsers()
+    {
+        return $this->hasMany(CompanySponsor::class, 'company_id')->take(4);
     }
 }
