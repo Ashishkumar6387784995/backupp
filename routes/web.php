@@ -152,7 +152,18 @@ Route::group(['namespace' => 'Auth'], function () {
 
     Route::get('testimonials',[HomeController::class, "testimonials"])->name('home.testimonials');
 
-    Route::get('aboutus',[HomeController::class, "aboutus"])->name('home.aboutus');
+    Route::get('aboutus', [HomeController::class, "aboutus"])->name('home.aboutus');
+    Route::get('career', [HomeController::class, "career"])->name('home.career');
+    Route::get('employee-home', [HomeController::class, "employeeHome"])->name('home.employeeHome');
+    Route::get('sitemap', [HomeController::class, "sitemap"])->name('home.sitemap');
+    Route::get('help-center', [HomeController::class, "helpCenter"])->name('home.helpCenter');
+    Route::get('summons-notices', [HomeController::class, "summonsNotices"])->name('home.summonsNotices');
+    Route::get('grievances', [HomeController::class, "grievances"])->name('home.grievances');
+    Route::get('report-issues', [HomeController::class, "reportIssues"])->name('home.reportIssues');
+    Route::get('privacy-policy', [HomeController::class, "privacyPolicy"])->name('home.privacyPolicy');
+    Route::get('terms-conditions', [HomeController::class, "termsConditions"])->name('home.termsConditions');
+    Route::get('fraud-alert', [HomeController::class, "fraudAlert"])->name('home.fraudAlert');
+    Route::get('trust-safety', [HomeController::class, "trustSafety"])->name('home.trustSafety');    
 
     Route::get('development',[HomeController::class, "development"])->name('home.development');
 

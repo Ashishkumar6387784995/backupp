@@ -161,12 +161,12 @@ class HomeController extends Controller
       $slug = $request->get('job_slug');
       $jobs = Job::with('jobType', 'jobExperience')->where('status', 1)->where('slug', $slug)->first();
 
-      
+
       if ($jobs) {
         $user = auth()->guard('user')->user();
-        
+
         $checkAlreadySavedJobs = SavedJobs::where('user_id', $user->id)->where('job_id', $jobs->id)->first();
-        if(!$checkAlreadySavedJobs) {
+        if (!$checkAlreadySavedJobs) {
           $data = new SavedJobs();
           $data->user_id = $user->id;
           $data->job_id = $jobs->id;
@@ -178,8 +178,7 @@ class HomeController extends Controller
           'message' => 'Jobs saves successfully.',
           'data' => $jobs
         ], 200);
-
-      }else {
+      } else {
         return response()->json([
           'success' => false,
           'message' => 'Could not find job details.',
@@ -207,16 +206,16 @@ class HomeController extends Controller
     }
   }
 
-  
+
   public function companyListApi()
   {
     try {
       $companies = Company::select('companies.*')
-                  ->with(['getAllCompanySponsers', 'user'])
-                  ->join('users', 'users.id', '=', 'companies.user_id')
-                  ->where('users.is_active', '1')
-                  ->where('users.is_verified', '1')
-                  ->get();
+        ->with(['getAllCompanySponsers', 'user'])
+        ->join('users', 'users.id', '=', 'companies.user_id')
+        ->where('users.is_active', '1')
+        ->where('users.is_verified', '1')
+        ->get();
       // dd($companies);
 
       return response()->json([
@@ -224,7 +223,6 @@ class HomeController extends Controller
         'message' => 'Company fetched successfully.',
         'data' => $companies
       ], 200);
-
     } catch (\Exception $e) {
       return response()->json([
         'success' => false,
@@ -234,17 +232,17 @@ class HomeController extends Controller
     }
   }
 
-   
+
   public function companyDetailsApi($id)
   {
     try {
       $companies = Company::select('companies.*')
-                  ->with(['getAllCompanySponsers', 'user'])
-                  ->join('users', 'users.id', '=', 'companies.user_id')
-                  ->where('users.is_active', '1')
-                  ->where('users.is_verified', '1')
-                  ->where('companies.id', $id)
-                  ->get();
+        ->with(['getAllCompanySponsers', 'user'])
+        ->join('users', 'users.id', '=', 'companies.user_id')
+        ->where('users.is_active', '1')
+        ->where('users.is_verified', '1')
+        ->where('companies.id', $id)
+        ->get();
       // dd($companies);
 
       return response()->json([
@@ -252,7 +250,6 @@ class HomeController extends Controller
         'message' => 'Company fetched successfully.',
         'data' => $companies
       ], 200);
-
     } catch (\Exception $e) {
       return response()->json([
         'success' => false,
@@ -270,12 +267,12 @@ class HomeController extends Controller
       $breadcrumbs = '';
 
       $company = Company::select('companies.*')
-                  ->with(['getAllCompanySponsers', 'user'])
-                  ->join('users', 'users.id', '=', 'companies.user_id')
-                  ->where('users.is_active', '1')
-                  ->where('users.is_verified', '1')
-                  ->where('companies.id', $id)
-                  ->get();
+        ->with(['getAllCompanySponsers', 'user'])
+        ->join('users', 'users.id', '=', 'companies.user_id')
+        ->where('users.is_active', '1')
+        ->where('users.is_verified', '1')
+        ->where('companies.id', $id)
+        ->get();
 
       return view('frontend.companies-details', compact('page_title', 'page_description', 'breadcrumbs', 'company'));
     } catch (\Exception $e) {
@@ -373,10 +370,153 @@ class HomeController extends Controller
   public function aboutus()
   {
     try {
-      $page_title = 'Aboutus';
+      $page_title = 'About Us';
       $page_description = '';
       $breadcrumbs = '';
       return view('frontend.aboutus', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function career()
+  {
+    try {
+      $page_title = 'Career';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.career', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function employeeHome()
+  {
+    try {
+      $page_title = 'Employee Home';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.employee-home', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function sitemap()
+  {
+    try {
+      $page_title = 'Sitemap';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.sitemap', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function helpCenter()
+  {
+    try {
+      $page_title = 'Help Center';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.help-center', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function summonsNotices()
+  {
+    try {
+      $page_title = 'Summons/Notices';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.summons-notices', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function grievances()
+  {
+    try {
+      $page_title = 'Grievances';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.grievances', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function reportIssues()
+  {
+    try {
+      $page_title = 'Report Issues';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.report-issues', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function privacyPolicy()
+  {
+    try {
+      $page_title = 'Privacy Policy';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.privacy-policy', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function termsConditions()
+  {
+    try {
+      $page_title = 'Terms & Conditions';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.terms-conditions', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function fraudAlert()
+  {
+    try {
+      $page_title = 'Fraud Alert';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.fraud-alert', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
+  public function trustSafety()
+  {
+    try {
+      $page_title = 'Trust & Safety';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.trust-safety', compact('page_title', 'page_description', 'breadcrumbs'));
     } catch (\Exception $e) {
       dd($e);
       return redirect()->back()->with('error', $e->getMessage());
@@ -500,7 +640,7 @@ class HomeController extends Controller
   //   }
   // }
 
-  
+
   public function login(Request $req)
   {
     if ($req->method() == 'POST') {
