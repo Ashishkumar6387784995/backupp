@@ -367,6 +367,19 @@ class HomeController extends Controller
       return redirect()->back()->with('error', $e->getMessage());
     }
   }
+  public function contactus()
+  {
+    try {
+      $page_title = 'About Us';
+      $page_description = '';
+      $breadcrumbs = '';
+      return view('frontend.contact-us', compact('page_title', 'page_description', 'breadcrumbs'));
+    } catch (\Exception $e) {
+      dd($e);
+      return redirect()->back()->with('error', $e->getMessage());
+    }
+  }
+
   public function aboutus()
   {
     try {

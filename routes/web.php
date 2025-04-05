@@ -152,6 +152,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
     Route::get('testimonials',[HomeController::class, "testimonials"])->name('home.testimonials');
 
+    Route::get('contact-us', [HomeController::class, "contactus"])->name('home.contactus');
     Route::get('aboutus', [HomeController::class, "aboutus"])->name('home.aboutus');
     Route::get('career', [HomeController::class, "career"])->name('home.career');
     Route::get('employee-home', [HomeController::class, "employeeHome"])->name('home.employeeHome');
